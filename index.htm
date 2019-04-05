@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dice</title>
+
+</head>
+<!--
+Description: This algorithm asks the user to enter a string of possible results for 6 sided die rolls
+             The results (occurrences of each number), should be plotted on a bar graph.
+
+Identify I/O
+    INPUT:   Is a string of integers from 1 to 6
+             text field should limit user to 30 chars.
+
+    OUTPUT:  Should be a bar graph representing the occurrences of each of the die rolls
+             Must contain error for invalid input.
+             There is no need to manage the data being too large for the graph.
+
+
+
+
+WRITE HTML
+
+SETUP canvas
+
+PROMPT user input
+    Validate User input
+        if invalid chars in string throw error
+    SET variable to an array
+
+    Clear any previous error msg
+
+
+    DRAW Horizontal Axis
+        LOOP through numbers 1 - 6 (die nums)
+            DRAW up the y axis numbers 1 - 6
+
+
+    DRAW Vertical Axis (occurrence of rolled nums)
+        LOOP through numbers 1 - 9
+            DRAW up the x axis numbers 1 - 9
+
+CALL function
+    GET Parameters from user input
+        LOOP through input Array
+            DRAW rectangle on graph to represent num of occurrences of each number
+                *This got a little hazy for me so I decided to start coding.
+                More info below
+
+        OUTPUT Graph
+
+Notes for the more complex steps of the Algorithm:
+
+DRAW x, Y Axes
+Output will be a short stroke and with number along the lines of the axes, X 1-9 and Y 1-6 respectively
+We use iteration to draw short strokes and add numbers evenly along the axis.
+We need variables to represent the numbers drawn and place the short strokes.
+Use selection in to omit the zeroes on the graph.
+
+FUNCTION to draw the bars
+Must take parameters from the user input (integers)
+Must output filled rectangles of the right height in the right place
+Use variables to determine how high to draw
+Use variables to determine where along the horizontal axis to draw
+
+* I settled on having a loop going through each value 1-6 on the horizontal
+  then the inbuilt forEach method to match the values in the array.
+  I'm fully aware nested loops are a big no no and I guess this is expensive on resources.
+  I will rewrite it later with a separate function that extracts the number of occurrences of the rolls
+  into an object that can be fed into the con.fillRect function.
+  input = [1,1,1,1,2,2,2,6,6,]; to object = {1 : 4, 2 : 3, etc...};
+  Something like that.
+  BELOW is testing the algorithm, leaving out some of the more straight forward (for me) steps:
+  I left in some artifacts of the debug process.
+
+
+-->
+
+<body>
+
+<div align="center">
+<h1>Six sided die simulator</h1>
+Enter your dice rolls:<br />
+<input type="text" size="30" maxlength="30" id="user_input"><br />
+<br />
+    <button type="button" onclick="drawBars()">Display</button><br />
+
+    <button type="button" onclick="clearBars()">Clear</button><br />
+    <br />
+    <canvas id="myCanvas" width="1000" align="center" height="1000"style="border:1px solid #FF0000;">
+        Canvas is not supported!
+</canvas>
+</div>
+<script src="script.js" type="text/javascript" language="JavaScript"></script>
+</body>
+</html>

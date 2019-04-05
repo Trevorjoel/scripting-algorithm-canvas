@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Binary Converter</title>
+    <link rel="stylesheet" type="text/css" href=""/>
+
+</head>
+<body>
+
+<script type="text/javascript">
+    /*
+    This is an algorithm to convert a text representation of a binary number to an integer
+    The goal was to convert strings 1-8 digits but I found it easy enough to take larger strings.
+    It is  completed in 3 sections.
+    1) Is the raw algorithm I wrote before designing the code, without going back and changing after the following two steps.
+    2) Is the testing the ideas with the console
+    3) Is the final function (in script)
+
+
+   1)Prompt users for input
+     Set variables
+     Reverse the array
+     loop through the array, add values to a new array and catch incorrect inputs
+     add up all the values of the value array
+     Output the results
+
+
+    2)/*  Note: Below is the testing ground for the algorithm
+
+    // Prompt users for input
+
+    // Set variables
+    var binary = ["0","0","0","0","1","0","1"];
+    var value = 1;
+    var total = 0;
+    let valueArray = [];
+
+    // Reverse the array so the 0'th position of the array is the first value in binary values.
+    // This seems easier to get my head around because binary is read right to left but arrays are indexed l to r.
+    // Enables any length of user input.
+    binary.reverse();
+
+    // loop through the array, add values to a new array catch incorrect inputs
+    for (i = 0; i < binary.length; i++) {
+        switch (binary[i]) {
+            case "1":
+                valueArray.push(value);
+                break;
+            case "0":
+                valueArray.push(0);
+                break;
+            default:
+                console.log("Please check your input only 1's and 0's accepted!");
+        }
+        value = parseInt(value * 2);
+    }
+
+    // add up all the values of the value array
+    for(i = 0; i < valueArray.length ; i++){
+
+        total += valueArray[i];
+    }
+
+
+    // Output the results
+    console.log(total);
+*/
+
+    // 3) This is the functional version, comments are added as I found new issues
+    //
+
+
+</script>
+
+    <h1>Binary to decimal number converter</h1>
+    Enter your binary number: <input type = "text" id = "user_input" />
+    <br />
+
+    <button onclick="convertIt()">Convert</button>
+    <br />
+
+<button onclick="clearIt()">Clear</button>
+
+<div id="container">
+
+</div>
+    <script type="text/javascript">
+        function convertIt() {
+            // Get user input initiate variables
+
+            let getDiv = document.getElementById('container');
+            let htmlString = "";
+            let value = 1;
+            let total = 0;
+            let valueArray = [];
+            var error = false;
+
+            // Get user input
+          var binaryInput = (document.getElementById('user_input').value);
+          // You asked for "string input"
+
+            // Split the string into an array
+            let binaryArray = binaryInput.split('');
+
+            binaryArray.reverse();
+
+            for (i = 0; i < binaryArray.length; i++) {
+
+                switch (binaryArray[i]) {
+                    case "1":
+                        valueArray.push(value);
+                        break;
+                    case "0":
+                        valueArray.push(0);
+                        break;
+
+                    default:
+                        error = true;
+
+                        // set variable to break out of loop (surely there's a more elegant way to do this)
+                        i = binaryArray.length;
+
+                        // Change HTML for error
+                        htmlString += "<br /><b>Please check your input. Only 1's and 0's accepted!</b>";
+
+                        break;
+
+                }
+                value = value * 2;
+            }
+
+            // add the values
+
+                for (i = 0; i < valueArray.length; i++) {
+
+                    total += valueArray[i];
+                }
+                // Output HTML if no error
+                if (error === false) {
+                    htmlString += "<br /><b>" + total + "</b>";
+
+                document.getElementById('user_input').value = '';
+
+                }
+
+            getDiv.insertAdjacentHTML('beforeEnd', htmlString);
+        }
+// Extra Function to clear the input field and reload the page
+function clearIt() {
+
+    document.getElementById('user_input').value = '';
+    location.reload();
+
+}
+
+        </script>
+
+
+
+</body>
+</html>
